@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wandr – Support</title>
+    <meta name="description" content="Get help with Wandr. Browse FAQs or send us a message and we'll get back to you quickly.">
+    <meta name="theme-color" content="#0a0a1a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --indigo: #4f46e5;
+            --indigo-light: #6366f1;
+            --violet: #7c3aed;
+            --bg-dark: #0a0a1a;
+            --bg-section: #0f0f24;
+            --text-primary: #f0f0ff;
+            --text-secondary: #a0a0c0;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 16px 24px;
+            transition: background 0.3s, backdrop-filter 0.3s;
+        }
+        nav.scrolled {
+            background: rgba(10, 10, 26, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav-brand img {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+        }
+        .nav-brand span {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--text-primary); }
+
+        /* Hero */
+        .page-hero {
+            padding: 140px 24px 80px;
+            text-align: center;
+            position: relative;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 50% at 50% 0%, rgba(79, 70, 229, 0.12) 0%, transparent 60%);
+        }
+        .page-hero-inner { position: relative; max-width: 640px; margin: 0 auto; }
+        .section-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--indigo-light);
+            margin-bottom: 12px;
+        }
+        .page-hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+        .gradient {
+            background: linear-gradient(135deg, var(--indigo-light), var(--violet), #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        .support-layout {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px 120px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        /* FAQ */
+        .faq-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+        .faq-item {
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: var(--glass-bg);
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: left;
+            gap: 16px;
+        }
+        .faq-question:hover { background: rgba(255,255,255,0.03); }
+        .faq-icon {
+            flex-shrink: 0;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: rgba(79,70,229,0.15);
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s, background 0.2s;
+            font-size: 18px;
+            line-height: 1;
+            color: var(--indigo-light);
+        }
+        .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(79,70,229,0.3); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.2s;
+        }
+        .faq-item.open .faq-answer { max-height: 300px; }
+        .faq-answer p {
+            padding: 0 24px 20px;
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        /* Contact Form */
+        .contact-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        .contact-section .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .contact-form {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 32px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-family: inherit;
+            font-size: 15px;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+            -webkit-appearance: none;
+        }
+        .form-group select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a0a0c0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(255,255,255,0.06);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(160,160,192,0.5);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--indigo);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 32px rgba(79, 70, 229, 0.4);
+        }
+        .btn-submit:active { transform: translateY(0); }
+        .btn-submit:disabled {
+            background: rgba(79,70,229,0.4);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Success state */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 48px 24px;
+        }
+        .form-success .check {
+            width: 64px; height: 64px;
+            background: rgba(34,197,94,0.15);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+        .form-success h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .form-success p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Direct contact */
+        .direct-contact {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+        }
+        .direct-contact .icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: rgba(79,70,229,0.15);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+        .direct-contact .info { flex: 1; }
+        .direct-contact .info span {
+            display: block;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 3px;
+        }
+        .direct-contact .info a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--indigo-light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .direct-contact .info a:hover { color: var(--text-primary); }
+
+        /* Footer */
+        footer {
+            padding: 40px 24px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-brand { display: flex; align-items: center; gap: 10px; }
+        .footer-brand img { width: 32px; height: 32px; border-radius: 8px; }
+        .footer-brand span { font-weight: 600; font-size: 15px; }
+        .footer-links { display: flex; gap: 24px; list-style: none; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-primary); }
+        .footer-copy { font-size: 13px; color: var(--text-secondary); }
+
+        @media (max-width: 768px) {
+            .support-layout { grid-template-columns: 1fr; gap: 48px; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="https://r2-pub.rork.com/generated-images/icon.png" alt="Wandr"
+                     onerror="this.style.display='none'">
+                <span>Wandr</span>
+            </a>
+            <a href="index.html" class="nav-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 5l-7 7 7 7"/>
+                </svg>
+                Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-inner">
+            <div class="section-label">Support</div>
+            <h1>We're here to <span class="gradient">help.</span></h1>
+            <p>Browse common questions below or send us a message — we typically respond within 24 hours.</p>
+        </div>
+    </section>
+
+    <div class="support-layout">
+
+        <!-- FAQ -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How does Wandr find people nearby?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Wandr uses your device's location to detect other Wandr users within a configurable radius — typically 100 to 500 meters. You choose your visible range in Settings. Your precise coordinates are never shared with other users, only your approximate proximity.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Is my location shared with other users?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>No. Other users only see that you are "nearby" — they never see your exact coordinates. Your location is processed on our servers to calculate proximity and is not stored permanently or exposed to other users in any precise form.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What is Invisible Mode?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Invisible Mode lets you browse nearby profiles without appearing in other users' feeds. You can still initiate conversations, but you won't be discoverable unless you choose to be. It's available on Wandr+ and Wandr Premium plans.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How do I manage my subscription?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>All subscriptions are managed through Apple's App Store. Go to Settings → Apple ID → Subscriptions on your iPhone to view, upgrade, downgrade, or cancel your Wandr subscription. We are not able to process refunds directly — please contact Apple Support for billing issues.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How do I delete my account?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Open Wandr, go to Profile → Settings → Account → Delete Account. This permanently removes your profile, messages, and all associated data within 30 days. You can also contact us via the form on this page to request deletion.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Why is Wandr not finding anyone nearby?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Make sure Location Access is set to "Always" or "While Using" in your iPhone's Settings → Privacy → Location Services → Wandr. Also check that Background App Refresh is enabled. Wandr is most active in urban areas — results will vary in rural or less populated regions.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How do I report someone?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Tap on a user's profile, scroll to the bottom, and select "Report." You can also block a user directly from any chat thread by tapping the three-dot menu. Reports are reviewed by our moderation team within 24 hours.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-section">
+            <h2>Send Us a Message</h2>
+            <p class="subtitle">Can't find what you're looking for? Fill out the form and we'll get back to you within one business day.</p>
+
+            <div class="contact-form">
+                <div id="formContent">
+                    <form id="supportForm" onsubmit="submitForm(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" placeholder="Alex" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Johnson" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Topic</label>
+                            <select id="category" name="category" required>
+                                <option value="" disabled selected>Select a topic…</option>
+                                <option value="account">Account &amp; Profile</option>
+                                <option value="billing">Billing &amp; Subscriptions</option>
+                                <option value="privacy">Privacy &amp; Data</option>
+                                <option value="bug">Bug or Technical Issue</option>
+                                <option value="safety">Safety &amp; Reporting</option>
+                                <option value="other">Something Else</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Describe your issue or question in as much detail as possible…" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                <div class="form-success" id="formSuccess">
+                    <div class="check">✓</div>
+                    <h3>Message Sent!</h3>
+                    <p>Thanks for reaching out. We'll respond to <span id="confirmEmail"></span> within one business day.</p>
+                </div>
+            </div>
+
+            <div class="direct-contact">
+                <div class="icon">✉️</div>
+                <div class="info">
+                    <span>Prefer to email directly?</span>
+                    <a href="mailto:hassan@south-bay-consulting.com">hassan@south-bay-consulting.com</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="https://r2-pub.rork.com/generated-images/icon.png" alt="Wandr" onerror="this.style.display='none'">
+                <span>Wandr</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+            <div class="footer-copy">&copy; 2026 Wandr Chat. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        // FAQ toggle
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        }
+
+        // Form submission — opens mailto with prefilled body
+        function submitForm(e) {
+            e.preventDefault();
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName  = document.getElementById('lastName').value.trim();
+            const email     = document.getElementById('email').value.trim();
+            const category  = document.getElementById('category').value;
+            const message   = document.getElementById('message').value.trim();
+
+            const subject = encodeURIComponent(`Wandr Support – ${category.charAt(0).toUpperCase() + category.slice(1)}`);
+            const body = encodeURIComponent(
+                `Name: ${firstName} ${lastName}\nFrom: ${email}\nTopic: ${category}\n\n${message}`
+            );
+
+            // Open the user's mail client pre-filled
+            window.location.href = `mailto:hassan@south-bay-consulting.com?subject=${subject}&body=${body}`;
+
+            // Show success state
+            document.getElementById('confirmEmail').textContent = email;
+            document.getElementById('formContent').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
