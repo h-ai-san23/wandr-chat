@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Wandr Chat</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #100820;
+      --surface:   #1a1030;
+      --border:    rgba(108, 99, 255, 0.18);
+      --accent:    #6C63FF;
+      --accent2:   #a78bfa;
+      --text:      #e8e0f8;
+      --muted:     #9585c8;
+      --radius:    16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(160deg, #1e0f40 0%, #100820 60%);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(108, 99, 255, 0.15);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 8px 20px;
+      margin-bottom: 28px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent2);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .logo-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    header h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff 30%, var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .effective-date {
+      display: inline-block;
+      margin-top: 18px;
+      background: rgba(108, 99, 255, 0.12);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── QUICK SUMMARY CARD ── */
+    .summary-card {
+      background: rgba(108, 99, 255, 0.09);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+
+    .summary-card h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .summary-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text);
+      opacity: 0.9;
+    }
+
+    .summary-item .icon {
+      flex-shrink: 0;
+      font-size: 18px;
+      margin-top: 1px;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      margin-bottom: 44px;
+    }
+
+    section h2 {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #fff;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    section h2 .num {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    section h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent2);
+      margin: 24px 0 10px;
+    }
+
+    p {
+      color: var(--text);
+      margin-bottom: 14px;
+      opacity: 0.88;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+
+    li {
+      color: var(--text);
+      margin-bottom: 7px;
+      opacity: 0.88;
+    }
+
+    /* ── INFO BOXES ── */
+    .info-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14.5px;
+    }
+
+    .info-box.warning {
+      border-left-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.06);
+    }
+
+    /* ── DATA TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .data-table th {
+      background: rgba(108, 99, 255, 0.18);
+      color: var(--accent2);
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .data-table td {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      color: var(--text);
+      opacity: 0.88;
+      vertical-align: top;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(108, 99, 255, 0.06);
+    }
+
+    /* ── CONTACT CARD ── */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(167,139,250,0.08));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .contact-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .contact-card a {
+      display: inline-block;
+      margin-top: 16px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .contact-card a:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .summary-grid { grid-template-columns: 1fr; }
+      .data-table { font-size: 13px; }
+      .data-table th, .data-table td { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════ HEADER -->
+<header>
+  <div class="logo-badge"><span class="logo-dot"></span> Wandr Chat</div>
+  <h1>Privacy Policy</h1>
+  <p>We built Wandr Chat with your privacy as a priority. This policy explains exactly what we collect, why, and how you stay in control.</p>
+  <span class="effective-date">Effective Date: February 21, 2026 &nbsp;·&nbsp; Version 1.0</span>
+</header>
+
+<!-- ════════════════════════════════════════ BODY -->
+<div class="container">
+
+  <!-- QUICK SUMMARY -->
+  <div class="summary-card">
+    <h2>✦ Quick Summary</h2>
+    <div class="summary-grid">
+      <div class="summary-item"><span class="icon">📍</span><span>Location used only while app is open — never in the background</span></div>
+      <div class="summary-item"><span class="icon">💬</span><span>Messages are only readable by the two people in the conversation</span></div>
+      <div class="summary-item"><span class="icon">🚫</span><span>We never sell your data to third parties</span></div>
+      <div class="summary-item"><span class="icon">🔒</span><span>Invisible Mode lets you go off-grid at any time</span></div>
+      <div class="summary-item"><span class="icon">🗑️</span><span>Delete your account and all your data, anytime</span></div>
+      <div class="summary-item"><span class="icon">💳</span><span>Purchases handled entirely by Apple — we never see payment details</span></div>
+    </div>
+  </div>
+
+  <!-- 1. INTRODUCTION -->
+  <section>
+    <h2><span class="num">1</span> Introduction</h2>
+    <p>Wandr Chat ("we," "us," or "our") is a proximity-based messaging application available on iOS. This Privacy Policy describes how we collect, use, disclose, and protect your personal information when you use the Wandr Chat mobile application (the "App").</p>
+    <p>By using the App, you agree to the collection and use of information in accordance with this policy. If you do not agree, please do not use the App.</p>
+    <p>This policy applies to all users of the App regardless of location. Where applicable, we comply with the California Consumer Privacy Act (CCPA), the EU General Data Protection Regulation (GDPR), and Apple's App Store privacy requirements.</p>
+  </section>
+
+  <!-- 2. INFORMATION WE COLLECT -->
+  <section>
+    <h2><span class="num">2</span> Information We Collect</h2>
+
+    <h3>2.1 Information You Provide Directly</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>Data Type</th><th>What It Is</th><th>Why We Collect It</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Display Name</td><td>The name you set on your profile</td><td>Shown to nearby users</td></tr>
+        <tr><td>Profile Photo</td><td>Avatar image you upload</td><td>Displayed on your profile card</td></tr>
+        <tr><td>Bio &amp; Status</td><td>Short text you write about yourself</td><td>Shown on your profile</td></tr>
+        <tr><td>Messages</td><td>Text content of chats you send</td><td>Delivering messages to recipients</td></tr>
+        <tr><td>Message Requests</td><td>Initial message sent to a nearby user</td><td>Enabling the request/accept flow</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.2 Location Data</h3>
+    <p>Wandr Chat's core feature depends on your location. We collect location data as follows:</p>
+    <ul>
+      <li><strong>Precision:</strong> Approximate location by default. You may enable precise location in Settings.</li>
+      <li><strong>Timing:</strong> Only while the App is in the foreground ("While Using the App" permission). We do not use background location tracking.</li>
+      <li><strong>Storage:</strong> Your last known approximate coordinates are stored to enable proximity discovery. We never store a continuous location history.</li>
+      <li><strong>Display:</strong> Other users only ever see approximate distances (e.g., "120m away" or "0.3 mi away") — never your exact GPS coordinates, address, or a map pin.</li>
+    </ul>
+    <div class="info-box">
+      <strong>Invisible Mode:</strong> When enabled, your location is not shared with the discovery system and you will not appear in any other user's Nearby list. You can still send and receive messages with contacts you have already accepted.
+    </div>
+
+    <h3>2.3 Usage &amp; Technical Data</h3>
+    <ul>
+      <li>Device type, operating system version, and app version</li>
+      <li>Crash logs and diagnostic data (via Apple's crash reporting framework)</li>
+      <li>In-app feature interactions (e.g., tabs visited, settings toggled) — used in aggregate, never tied to your identity for advertising</li>
+      <li>IP address (used for fraud prevention and rate limiting only)</li>
+    </ul>
+
+    <h3>2.4 Purchase Information</h3>
+    <p>In-app purchases (such as conversation boosts and subscriptions) are processed entirely by Apple via StoreKit 2. We receive only a transaction receipt and your subscription status — we never receive, store, or process your payment card details, Apple ID, or billing address.</p>
+  </section>
+
+  <!-- 3. HOW WE USE YOUR INFORMATION -->
+  <section>
+    <h2><span class="num">3</span> How We Use Your Information</h2>
+    <p>We use the information we collect for the following purposes:</p>
+    <ul>
+      <li><strong>Proximity Discovery:</strong> To show you other users within your chosen radius and allow them to see you.</li>
+      <li><strong>Messaging:</strong> To deliver messages between users, manage request/accept flows, and enforce distance-gating on conversations.</li>
+      <li><strong>Account Management:</strong> To display your profile, remember your settings, and maintain your account.</li>
+      <li><strong>Safety &amp; Trust:</strong> To process reports of abusive content, enforce blocks, and apply spam limits on outgoing requests.</li>
+      <li><strong>Service Improvement:</strong> To identify bugs, crashes, and performance issues using anonymized diagnostic data.</li>
+      <li><strong>Subscription Management:</strong> To verify your purchase entitlements and unlock paid features.</li>
+      <li><strong>Legal Compliance:</strong> To comply with applicable law, enforce our Terms of Service, and respond to lawful requests.</li>
+    </ul>
+    <div class="info-box warning">
+      We do <strong>not</strong> use your personal information to serve targeted or behavioral advertising, nor do we sell, rent, or trade your data with advertising networks or data brokers.
+    </div>
+  </section>
+
+  <!-- 4. HOW WE SHARE YOUR INFORMATION -->
+  <section>
+    <h2><span class="num">4</span> How We Share Your Information</h2>
+    <p>We do not sell your personal information. We share data only in the following limited circumstances:</p>
+
+    <h3>4.1 With Other Users (By Design)</h3>
+    <p>When you use Wandr Chat, some of your information is visible to nearby users by design. This includes your display name, avatar, bio, status text, and approximate distance. Messages you send are visible to the intended recipient only.</p>
+
+    <h3>4.2 With Service Providers</h3>
+    <p>We may share data with third-party vendors who assist us in operating the App (e.g., cloud hosting, database infrastructure, push notification delivery). These providers are contractually bound to use your data only as directed by us and may not use it for their own purposes.</p>
+
+    <h3>4.3 For Safety and Legal Reasons</h3>
+    <p>We may disclose your information if we believe in good faith that such disclosure is necessary to: comply with a legal obligation; protect the rights, property, or safety of Wandr Chat, our users, or the public; prevent fraud or abuse.</p>
+
+    <h3>4.4 Business Transfers</h3>
+    <p>If Wandr Chat is involved in a merger, acquisition, or sale of assets, your information may be transferred. We will notify you before your personal information becomes subject to a different privacy policy.</p>
+  </section>
+
+  <!-- 5. DATA RETENTION -->
+  <section>
+    <h2><span class="num">5</span> Data Retention</h2>
+    <p>We retain your data for as long as your account is active or as needed to provide the service.</p>
+    <ul>
+      <li><strong>Messages:</strong> Stored for as long as the conversation exists. Declining a request or blocking a user removes the associated messages from your view.</li>
+      <li><strong>Location data:</strong> Last known approximate location is overwritten on each app session. We do not retain a location history.</li>
+      <li><strong>Account deletion:</strong> When you delete your account, we permanently delete your profile, messages, and associated data within 30 days. Anonymized aggregated data (e.g., usage statistics) may be retained.</li>
+    </ul>
+  </section>
+
+  <!-- 6. YOUR RIGHTS AND CHOICES -->
+  <section>
+    <h2><span class="num">6</span> Your Rights &amp; Choices</h2>
+    <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+    <ul>
+      <li><strong>Access:</strong> Request a copy of the personal data we hold about you.</li>
+      <li><strong>Correction:</strong> Update or correct inaccurate profile information at any time in the app.</li>
+      <li><strong>Deletion:</strong> Delete your account and all associated data via <em>Profile → Delete Account</em> in the App.</li>
+      <li><strong>Portability:</strong> Request your data in a portable format.</li>
+      <li><strong>Objection / Restriction:</strong> Object to certain processing or ask us to restrict it.</li>
+      <li><strong>Location controls:</strong> Revoke location permission at any time in iOS Settings → Privacy &amp; Security → Location Services → Wandr Chat.</li>
+      <li><strong>Notifications:</strong> Disable push notifications in iOS Settings or within the App under Settings → Notifications.</li>
+      <li><strong>Invisible Mode:</strong> Enable at any time in the App under Settings → Invisible Mode.</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at the email address listed in Section 10.</p>
+  </section>
+
+  <!-- 7. CHILDREN'S PRIVACY -->
+  <section>
+    <h2><span class="num">7</span> Children's Privacy</h2>
+    <p>Wandr Chat is not directed to children under the age of 17. We do not knowingly collect personal information from anyone under 17. The App is rated 17+ on the App Store. If we become aware that we have collected personal information from a child under 17, we will take steps to delete that information promptly.</p>
+    <p>If you believe we may have collected information from a child under 17, please contact us immediately.</p>
+  </section>
+
+  <!-- 8. DATA SECURITY -->
+  <section>
+    <h2><span class="num">8</span> Data Security</h2>
+    <p>We implement industry-standard technical and organisational security measures to protect your personal information, including:</p>
+    <ul>
+      <li>Encrypted data transmission over TLS/HTTPS</li>
+      <li>Encrypted storage of sensitive data at rest</li>
+      <li>Access controls limiting who can view user data</li>
+      <li>Regular security reviews and vulnerability assessments</li>
+    </ul>
+    <p>No method of transmission over the internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your data, we cannot guarantee its absolute security. In the event of a data breach that affects your rights and freedoms, we will notify affected users as required by applicable law.</p>
+  </section>
+
+  <!-- 9. THIRD-PARTY SERVICES -->
+  <section>
+    <h2><span class="num">9</span> Third-Party Services</h2>
+    <p>The App integrates with the following third-party services, each governed by their own privacy policies:</p>
+    <ul>
+      <li><strong>Apple App Store / StoreKit:</strong> Handles all in-app purchase transactions. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy ↗</a></li>
+      <li><strong>Apple Push Notification Service (APNs):</strong> Delivers push notifications to your device. Governed by Apple's privacy policy.</li>
+      <li><strong>Apple CloudKit (if applicable):</strong> Used for optional data sync across your devices.</li>
+    </ul>
+    <p>We do not integrate third-party advertising SDKs, social media tracking pixels, or data broker services.</p>
+  </section>
+
+  <!-- 10. CONTACT -->
+  <section>
+    <h2><span class="num">10</span> Contact Us</h2>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us:</p>
+    <div class="contact-card">
+      <h3>Wandr Chat Support</h3>
+      <p>We aim to respond to all privacy-related inquiries within 72 hours.</p>
+      <a href="mailto:hassannadeem195@gmail.com">hassannadeem195@gmail.com</a>
+    </div>
+    <p style="margin-top:20px;">You may also reach us by mail at the address on file with Apple Inc. for the App's developer account.</p>
+  </section>
+
+  <!-- 11. CHANGES -->
+  <section>
+    <h2><span class="num">11</span> Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. When we do, we will revise the "Effective Date" at the top of this page. For material changes, we will provide a more prominent notice within the App (such as an in-app notification) prior to the change becoming effective.</p>
+    <p>Your continued use of the App after any changes constitutes your acceptance of the new Privacy Policy.</p>
+  </section>
+
+</div>
+
+<!-- ════════════════════════════════════════ FOOTER -->
+<footer>
+  <p>© 2026 Wandr Chat. All rights reserved.</p>
+  <p style="margin-top:6px;">This privacy policy was last updated on <strong>February 21, 2026</strong>.</p>
+</footer>
+
+</body>
+</html>
